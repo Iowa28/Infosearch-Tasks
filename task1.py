@@ -15,7 +15,7 @@ def run():
 
     num = 0
     for movie in movies:
-        # извеление url, который ведет на страницу фильма
+        # извлечение url, который ведет на страницу фильма
         url = movie.find('a')['href']
         num += 1
 
