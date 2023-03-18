@@ -1,5 +1,4 @@
 import operator
-from decimal import Decimal
 
 from numpy import dot
 from numpy.linalg import norm
@@ -25,16 +24,6 @@ def calc_cos_similarity(tf_idf_vector, tf_idf_movie_vector):
         return 0
 
     return dot(query_vector, movie_vector) / (norm(query_vector) * norm(movie_vector))
-    # num = decimal_dot_product(query_vector, movie_vector)
-    # den = Decimal(norm(query_vector) * norm(movie_vector))
-    # return num / den
-
-
-def decimal_dot_product(list1, list2):
-    result = Decimal(0)
-    for i in range(0, len(list1)):
-        result += Decimal(list1[i]) * Decimal(list2[i])
-    return result
 
 
 def search(query):
@@ -75,14 +64,10 @@ def search(query):
         cos_sim = calc_cos_similarity(tf_idf_vector, tf_idf_movie_vector)
         if cos_sim != 0:
             cos_sim_result[i] = cos_sim
-            # print(tf_idf_vector.values())
-            # print(tf_idf_movie_vector.values())
-            # print()
 
     sorted_result = sorted(cos_sim_result.items(), key=operator.itemgetter(1), reverse=True)
     result = dict(sorted_result)
     return result
-    # return list(result.keys())
 
 
 def run():
